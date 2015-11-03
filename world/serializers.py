@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
+from cities.models import Country
 from rest_framework import serializers
 
 # Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class CountrySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'is_staff')
+        model = Country
+        fields = ('name', 'capital', 'population', 'area')
