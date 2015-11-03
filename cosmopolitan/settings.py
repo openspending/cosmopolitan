@@ -37,7 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'rest_framework',
+    'cities',
+    'world',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +80,7 @@ WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'cosmopolitan',
         'USER': 'cosmopolitan',
         'PASSWORD': '123456',
@@ -103,3 +106,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CITIES_FILES = {
+    'city': {
+       'filename': 'cities5000.zip',
+       'urls':     ['http://download.geonames.org/export/dump/'+'{filename}']
+    },
+}
