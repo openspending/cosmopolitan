@@ -15,22 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from rest_framework_nested import routers
-from world.views import CountryViewSet, RegionViewSet
+from rest_framework import routers
+from world.views import CountryViewSet, RegionViewSet, AlternativeNameViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 router.register(r'countries', CountryViewSet)
+router.register(r'regions', RegionViewSet)
+router.register(r'alternative-names', AlternativeNameViewSet)
 
-regions_router = routers.NestedSimpleRouter(router, r'countries', lookup='country')
-regions_router.register(r'regions', RegionViewSet, base_name='country-regions')
+# regions_router = routers.NestedSimpleRouter(router, r'countries', lookup='country')
+# regions_router.register(r'regions', RegionViewSet, base_name='country-regions')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
-
-    url(r'^', include(regions_router.urls)),
-    url(r'^v1/', include(regions_router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
