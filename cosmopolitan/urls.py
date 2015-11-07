@@ -7,11 +7,12 @@ from world.views import CountryViewSet, RegionViewSet, SubregionViewSet
 router = routers.DefaultRouter()
 router.register(r'countries', CountryViewSet)
 router.register(r'regions', RegionViewSet)
+router.register(r'subregions', SubregionViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
 
-    url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'})),
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/subregions', SubregionViewSet.as_view({'get': 'list'})),
+    url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'})),
 ]
