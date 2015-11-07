@@ -6,6 +6,7 @@ from world.views import CountryViewSet, RegionViewSet
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'countries', CountryViewSet)
+router.register(r'regions', RegionViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

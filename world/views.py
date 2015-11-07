@@ -1,7 +1,7 @@
-from cities.models import Country, Region, AlternativeName
+from cities.models import Country, Region
 from rest_framework import serializers, viewsets, generics
 from rest_framework.response import Response
-from .serializers import CountrySerializer, RegionSerializer, AlternativeNameSerializer
+from .serializers import CountrySerializer, RegionSerializer
 
 
 class CountryViewSet(viewsets.ModelViewSet):
@@ -15,5 +15,8 @@ class RegionViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Region.objects.all()
-        country_id = self.kwargs['country_id']
+        try:
+            country_id = self.kwargs['country_id']
+        except KeyError:
+            return queryset
         return queryset.filter(country=country_id)
