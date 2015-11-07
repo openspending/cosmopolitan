@@ -17,8 +17,3 @@ class RegionViewSet(viewsets.ModelViewSet):
         queryset = Region.objects.all()
         country_id = self.kwargs['country_id']
         return queryset.filter(country=country_id)
-
-
-class AlternativeNameViewSet(viewsets.ModelViewSet):
-    queryset = AlternativeName.objects.all()
-    serializer_class = AlternativeName
