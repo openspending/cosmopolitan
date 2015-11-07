@@ -1,11 +1,21 @@
-from cities.models import Country, Region
+from cities.models import Country, Region, Subregion
 from rest_framework import serializers
 
 class RegionSerializer(serializers.HyperlinkedModelSerializer):
-    alt_names = serializers.StringRelatedField(many=True)
+    # subregions = serializers.SerializerMethodField('subregion_url')
+
+    # def region_url(self, country, region):
+        # request = self.context.get('request', None)
+
+        # return "%s%d/regions/%d/subregions" % (request.build_absolute_uri(), country.pk, region.pk)
 
     class Meta:
         model = Region
+
+
+class SubregionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Subregion
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):

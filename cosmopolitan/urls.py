@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
-from world.views import CountryViewSet, RegionViewSet
+from world.views import CountryViewSet, RegionViewSet, SubregionViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
 
-    url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'}), name='country-regions'),
+    url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'})),
+    url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/subregions', SubregionViewSet.as_view({'get': 'list'})),
 ]
