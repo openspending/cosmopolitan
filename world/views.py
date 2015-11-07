@@ -28,5 +28,8 @@ class SubregionViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Subregion.objects.all()
-        region_id = self.kwargs['region_id']
+        try:
+            region_id = self.kwargs['region_id']
+        except KeyError:
+            return queryset
         return queryset.filter(region=region_id)
