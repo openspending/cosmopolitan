@@ -21,18 +21,10 @@ from world.views import CountryViewSet, RegionViewSet, AlternativeNameViewSet
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'countries', CountryViewSet)
-# router.register(r'regions', RegionViewSet)
-router.register(r'alternative-names', AlternativeNameViewSet)
-
-# regions_router = routers.NestedSimpleRouter(router, r'countries', lookup='country')
-# regions_router.register(r'regions', RegionViewSet, base_name='country-regions')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
 
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'}), name='country-regions'),
-
-    # url(r'^admin/', include(admin.site.urls)),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

@@ -8,6 +8,7 @@ class RegionSerializer(serializers.HyperlinkedModelSerializer):
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
     regions = serializers.SerializerMethodField('region_url')
+    alt_names = serializers.StringRelatedField(many=True)
 
     def region_url(self, country):
         request = self.context.get('request', None)
