@@ -71,8 +71,8 @@ WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+STATIC_URL = '/static/'
 if os.getenv('LOCAL_DEV', False):
-    STATIC_URL = '/static/'
     DATABASES = {
         'default': {
             'ENGINE': 'django.contrib.gis.db.backends.postgis',
