@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-2%$qx$=8gc4_zf36$ugzo%an8@==x-e9dr_plwtt*@2j4hovg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.getenv('LOCAL_DEV', False):
-DEBUG = True
-# else:
-    # DEBUG = False
+if os.getenv('LOCAL_DEV', False):
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -72,6 +72,7 @@ WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 if os.getenv('LOCAL_DEV', False):
+    STATIC_URL = '/static/'
     DATABASES = {
         'default': {
             'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -106,11 +107,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
 
 CITIES_FILES = {
     'city': {
