@@ -25,50 +25,50 @@ class CountryViewSet(viewsets.ModelViewSet):
 class RegionViewSet(viewsets.ModelViewSet):
     model = Region
     serializer_class = RegionSerializer
+    queryset = Region.objects.all()
 
     def get_queryset(self):
-        queryset = Region.objects.all()
         try:
             country_id = self.kwargs['country_id']
         except KeyError:
-            return queryset
-        return queryset.filter(country=country_id)
+            return self.queryset
+        return self.queryset.filter(country=country_id)
 
 
 class SubregionViewSet(viewsets.ModelViewSet):
     model = Subregion
     serializer_class = SubregionSerializer
+    queryset = Subregion.objects.all()
 
     def get_queryset(self):
-        queryset = Subregion.objects.all()
         try:
             region_id = self.kwargs['region_id']
         except KeyError:
-            return queryset
-        return queryset.filter(region=region_id)
+            return self.queryset
+        return self.queryset.filter(region=region_id)
 
 
 class CityViewSet(viewsets.ModelViewSet):
     model = City
     serializer_class = CitySerializer
+    queryset = City.objects.all()
 
     def get_queryset(self):
-        queryset = City.objects.all()
         try:
             region_id = self.kwargs['region_id']
         except KeyError:
-            return queryset
-        return queryset.filter(region=region_id)
+            return self.queryset
+        return self.queryset.filter(region=region_id)
 
 
 class DistrictViewSet(viewsets.ModelViewSet):
     model = District
     serializer_class = DistrictSerializer
+    queryset = District.objects.all()
 
     def get_queryset(self):
-        queryset = District.objects.all()
         try:
             city_id = self.kwargs['city_id']
         except KeyError:
-            return queryset
-        return queryset.filter(city=city_id)
+            return self.queryset
+        return self.queryset.filter(city=city_id)
