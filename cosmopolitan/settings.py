@@ -72,10 +72,11 @@ WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 STATIC_URL = '/static/'
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+
 if os.getenv('LOCAL_DEV', False):
     DATABASES = {
         'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
             'NAME': 'cosmopolitan',
             'USER': 'cosmopolitan',
             'PASSWORD': '123456',
@@ -84,9 +85,7 @@ if os.getenv('LOCAL_DEV', False):
 else:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
-    DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'static'
 
     STATICFILES_DIRS = (
