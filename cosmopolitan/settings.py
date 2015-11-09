@@ -85,11 +85,11 @@ else:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    STATIC_ROOT = 'static'
+    STATIC_ROOT = 'staticfiles'
 
-    # STATICFILES_DIRS = (
-        # os.path.join(BASE_DIR, 'static'),
-    # )
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, '../cosmopolitan/static'),
+    )
 
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
