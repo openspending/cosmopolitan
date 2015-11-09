@@ -72,7 +72,6 @@ WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 STATIC_URL = '/static/'
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 if os.getenv('LOCAL_DEV', False):
     DATABASES = {
@@ -92,6 +91,7 @@ else:
         os.path.join(BASE_DIR, 'static'),
     )
 
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
