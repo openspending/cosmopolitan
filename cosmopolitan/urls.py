@@ -1,5 +1,6 @@
 from django.conf.urls import include
 from django.conf.urls import url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
 
@@ -26,3 +27,4 @@ urlpatterns = [
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/subregions', SubregionViewSet.as_view({'get': 'list'})),
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'})),
 ]
+urlpatterns += staticfiles_urlpatterns()
