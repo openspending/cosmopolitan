@@ -4,7 +4,7 @@ from cities.models import Country
 from cities.models import Region
 from cities.models import Subregion
 from cities.models import City
-from cities.models import District
+# from cities.models import District
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
@@ -59,8 +59,8 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
         model = City
 
 
-class DistrictSerializer(serializers.HyperlinkedModelSerializer):
-    alt_names = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = District
+# class DistrictSerializer(serializers.HyperlinkedModelSerializer):
+#     alt_names = serializers.StringRelatedField(many=True)
+#
+#     class Meta:
+#         model = District

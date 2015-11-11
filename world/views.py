@@ -8,13 +8,13 @@ from cities.models import Country
 from cities.models import Region
 from cities.models import Subregion
 from cities.models import City
-from cities.models import District
+# from cities.models import District
 
 from .serializers import CountrySerializer
 from .serializers import RegionSerializer
 from .serializers import SubregionSerializer
 from .serializers import CitySerializer
-from .serializers import DistrictSerializer
+# from .serializers import DistrictSerializer
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -60,14 +60,14 @@ class CityViewSet(viewsets.ReadOnlyModelViewSet):
         return self.queryset.filter(region=region_id)
 
 
-class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
-    model = District
-    serializer_class = DistrictSerializer
-    queryset = District.objects.all()
-
-    def get_queryset(self):
-        try:
-            city_id = self.kwargs['city_id']
-        except KeyError:
-            return self.queryset
-        return self.queryset.filter(city=city_id)
+# class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
+#     model = District
+#     serializer_class = DistrictSerializer
+#     queryset = District.objects.all()
+#
+#     def get_queryset(self):
+#         try:
+#             city_id = self.kwargs['city_id']
+#         except KeyError:
+#             return self.queryset
+#         return self.queryset.filter(city=city_id)
