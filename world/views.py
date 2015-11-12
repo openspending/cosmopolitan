@@ -10,11 +10,13 @@ from cities.models import Subregion
 from cities.models import City
 # from cities.models import District
 
+from continents.models import Continent
+
 from .serializers import CountrySerializer
 from .serializers import RegionSerializer
 from .serializers import SubregionSerializer
 from .serializers import CitySerializer
-# from .serializers import DistrictSerializer
+from .serializers import ContinentSerializer
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -59,6 +61,11 @@ class CityViewSet(viewsets.ReadOnlyModelViewSet):
             return self.queryset
         return self.queryset.filter(region=region_id)
 
+
+class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
+    model = Continent
+    serializer_class = ContinentSerializer
+    queryset = Continent.objects.all()
 
 # class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
 #     model = District
