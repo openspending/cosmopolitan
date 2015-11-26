@@ -9,6 +9,7 @@ from world.views import RegionViewSet
 from world.views import SubregionViewSet
 from world.views import CityViewSet
 from world.views import ContinentViewSet
+from world.views import CurrencyViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -17,12 +18,12 @@ router.register(r'regions', RegionViewSet)
 router.register(r'subregions', SubregionViewSet)
 router.register(r'cities', CityViewSet)
 router.register(r'continents', ContinentViewSet)
+router.register(r'currencies', CurrencyViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
 
-    # url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/cities/(?P<city_id>[0-9]+)/districts', DistrictViewSet.as_view({'get': 'list'})),
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/cities', CityViewSet.as_view({'get': 'list'})),
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions/(?P<region_id>[0-9]+)/subregions', SubregionViewSet.as_view({'get': 'list'})),
     url(r'^v1/countries/(?P<country_id>[0-9]+)/regions', RegionViewSet.as_view({'get': 'list'})),

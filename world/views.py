@@ -1,27 +1,25 @@
-from rest_framework import serializers
 from rest_framework import viewsets
-from rest_framework import generics
-
-from rest_framework.response import Response
 
 from cities.models import Country
 from cities.models import Region
 from cities.models import Subregion
 from cities.models import City
-# from cities.models import District
 
 from continents.models import Continent
+from currencies.models import Currency
 
 from .serializers import CountrySerializer
 from .serializers import RegionSerializer
 from .serializers import SubregionSerializer
 from .serializers import CitySerializer
 from .serializers import ContinentSerializer
+from .serializers import CurrencySerializer
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+
 
 class RegionViewSet(viewsets.ReadOnlyModelViewSet):
     model = Region
@@ -67,14 +65,8 @@ class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ContinentSerializer
     queryset = Continent.objects.all()
 
-# class DistrictViewSet(viewsets.ReadOnlyModelViewSet):
-#     model = District
-#     serializer_class = DistrictSerializer
-#     queryset = District.objects.all()
-#
-#     def get_queryset(self):
-#         try:
-#             city_id = self.kwargs['city_id']
-#         except KeyError:
-#             return self.queryset
-#         return self.queryset.filter(city=city_id)
+
+class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
+    model = Currency
+    serializer_class = CurrencySerializer
+    queryset = Currency.objects.all()

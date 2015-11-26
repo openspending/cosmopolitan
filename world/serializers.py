@@ -6,6 +6,12 @@ from cities.models import Subregion
 from cities.models import City
 
 from continents.models import Continent
+from currencies.models import Currency
+
+
+class CurrencySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Currency
 
 
 class CountrySerializer(serializers.HyperlinkedModelSerializer):
