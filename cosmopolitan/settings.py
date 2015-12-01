@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'cities',
     'world',
+    'continents',
+    'currencies'
 )
 
 MIDDLEWARE_CLASSES = (
