@@ -6,9 +6,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('cities', '0002_auto_20151112_1857'),
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(

@@ -1,3 +1,33 @@
-from django.test import TestCase
+from rest_assured.testcases import BaseRESTAPITestCase
+from rest_assured.testcases import ListAPITestCaseMixin
+from .factory_boys import *
 
-# Create your tests here.
+
+class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'country'
+    factory_class = CountryFactory
+
+
+class RegionTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'region'
+    factory_class = RegionFactory
+
+
+class SubRegionTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'subregion'
+    factory_class = SubregionFactory
+
+
+class CityTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'city'
+    factory_class = CityFactory
+
+
+class ContinentTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'continent'
+    factory_class = ContinentFactory
+
+
+class CurrencyTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'currency'
+    factory_class = CurrencyFactory
