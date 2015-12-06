@@ -84,6 +84,19 @@ if os.getenv('LOCAL_DEV', False):
             'PASSWORD': '123456',
         }
     }
+elif os.getenv('BUILD_ON_TRAVIS', None):
+    SECRET_KEY = "SecretKeyForUseOnTravis"
+    TEMPLATE_DEBUG = True
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'travis_ci_test',
+            'USER': 'travis',
+            'PASSWORD': '',
+            'HOST': '127.0.0.1',
+        }
+    }
 else:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
