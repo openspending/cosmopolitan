@@ -4,3 +4,13 @@
 An API server for core data on places of the world.
 
 Based on https://github.com/coderholic/django-cities
+
+## Running locally
+
+Under virtual env:
+
+    . env/bin/activate
+
+    export LOCAL_DEV=1
+    
+    export DEBUG=1
