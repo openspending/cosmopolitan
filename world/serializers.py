@@ -29,6 +29,7 @@ class CountrySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Country
+        exclude = ('currency', 'currency_name')
 
 
 class RegionSerializer(serializers.HyperlinkedModelSerializer):
