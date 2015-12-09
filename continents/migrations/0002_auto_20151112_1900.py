@@ -24,6 +24,10 @@ def seed_data(apps, schema_editor):
         c = Continent(code=continent['code'], name=continent['name'], geoNameId=continent['geoNameId'])
         c.save()
 
+def revert_data(apps, schema_editor):
+    Continent = apps.get_model("continents", "Continent")
+    Continent.objects.all().delete()
+
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -31,5 +35,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(seed_data),
+        migrations.RunPython(seed_data, revert_data),
     ]

@@ -41,7 +41,8 @@ INSTALLED_APPS = (
     'cities',
     'world',
     'continents',
-    'currencies'
+    'currencies',
+    'extra_countries',
 )
 
 MIDDLEWARE_CLASSES = (
