@@ -7,7 +7,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0002_auto_20151112_1857'),
         ('continents', '0002_auto_20151112_1900'),
         ('currencies', '0006_auto_20151207_1445'),
     ]
