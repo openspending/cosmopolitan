@@ -14,3 +14,18 @@ Under virtual env:
     export LOCAL_DEV=1
     
     export DEBUG=1
+    
+## Starting from scratch
+
+if you just pulled this repo, you need to:
+
+* fill in cities database with ```python manage.py cities --import=all```;
+* re-migrate all models on top with
+ 
+    python manage.py migrate continents zero
+    python manage.py migrate currencies zero
+    python manage.py migrate extra_countries zero
+    
+    python manage.py migrate continents
+    python manage.py migrate currencies
+    python manage.py migrate extra_countries
