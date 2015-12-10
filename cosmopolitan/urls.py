@@ -10,6 +10,7 @@ from world.views import SubregionViewSet
 from world.views import CityViewSet
 from world.views import ContinentViewSet
 from world.views import CurrencyViewSet
+from world.views import ExtraCountryViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -19,6 +20,7 @@ router.register(r'subregions', SubregionViewSet)
 router.register(r'cities', CityViewSet)
 router.register(r'continents', ContinentViewSet)
 router.register(r'currencies', CurrencyViewSet)
+router.register(r'extracountries', ExtraCountryViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

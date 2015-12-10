@@ -7,6 +7,7 @@ from cities.models import City
 
 from continents.models import Continent
 from currencies.models import Currency
+from extra_countries.models import ExtraCountry
 
 from .serializers import CountrySerializer
 from .serializers import RegionSerializer
@@ -15,6 +16,8 @@ from .serializers import CitySerializer
 from .serializers import ContinentSerializer
 from .serializers import CurrencySerializer
 
+from extra_countries.models import ExtraCountry
+from extra_countries.serializers import ExtraCountrySerializer
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Country.objects.all()
@@ -70,3 +73,9 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     model = Currency
     serializer_class = CurrencySerializer
     queryset = Currency.objects.all()
+
+
+class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
+    model = ExtraCountry
+    serializer_class = ExtraCountrySerializer
+    queryset = ExtraCountry.objects.all()
