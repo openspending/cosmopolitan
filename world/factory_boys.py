@@ -4,6 +4,7 @@ from django.contrib.gis.geos import GEOSGeometry
 
 from continents.models import Continent
 from currencies.models import Currency
+from extra_countries.models import ExtraCountry
 
 from cities.models import Country
 from cities.models import Region
@@ -61,3 +62,12 @@ class CurrencyFactory(factory.DjangoModelFactory):
 
     code = 'EU'
     name = 'EuroCent'
+
+
+class ExtraCountryFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = ExtraCountry
+
+    country = factory.SubFactory(CountryFactory)
+    extra_continent = factory.SubFactory(ContinentFactory)
+    extra_currency = factory.SubFactory(CurrencyFactory)

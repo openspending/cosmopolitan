@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from cities.models import Country
 from cities.models import Region
@@ -79,3 +80,9 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
     model = ExtraCountry
     serializer_class = ExtraCountrySerializer
     queryset = ExtraCountry.objects.all()
+
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = ExtraCountrySerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
