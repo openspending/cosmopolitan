@@ -4,7 +4,7 @@ from .factory_boys import *
 
 
 class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
-    base_name = 'extra_country'
+    base_name = 'country'
     factory_class = ExtraCountryFactory
 
 
