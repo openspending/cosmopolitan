@@ -16,6 +16,7 @@ from .serializers import CurrencySerializer
 
 from extra_countries.models import ExtraCountry
 from extra_countries.serializers import ExtraCountrySerializer
+from extra_countries.serializers import ExtraCountrySerializerShort
 
 
 class RegionViewSet(viewsets.ReadOnlyModelViewSet):
@@ -75,7 +76,11 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ExtraCountry.objects.all()
 
     def list(self, request):
-        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = ExtraCountrySerializerShort(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def detail(self, request, pk=None):
         queryset = self.get_queryset()
         serializer = ExtraCountrySerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
