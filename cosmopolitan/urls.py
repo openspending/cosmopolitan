@@ -4,7 +4,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
 
-from world.views import CountryViewSet
 from world.views import RegionViewSet
 from world.views import SubregionViewSet
 from world.views import CityViewSet
