@@ -6,13 +6,14 @@ from cities.models import Subregion
 from cities.models import City
 
 from continents.models import Continent
+from continents.serializers import ContinentSerializer
+
 from currencies.models import Currency
+from currencies.serializers import CurrencySerializer
 
 from .serializers import RegionSerializer
 from .serializers import SubregionSerializer
 from .serializers import CitySerializer
-from .serializers import ContinentSerializer
-from .serializers import CurrencySerializer
 
 from extra_countries.models import ExtraCountry
 from extra_countries.serializers import ExtraCountrySerializer

@@ -4,19 +4,6 @@ from cities.models import Region
 from cities.models import Subregion
 from cities.models import City
 
-from continents.models import Continent
-from currencies.models import Currency
-
-from .short_serializers.serializers import CountrySerializerShort
-
-
-class CurrencySerializer(serializers.HyperlinkedModelSerializer):
-    countries = CountrySerializerShort(many=True, read_only=True)
-
-    class Meta:
-        model = Currency
-
-
 # class CountrySerializer(serializers.HyperlinkedModelSerializer):
 #     regions = serializers.SerializerMethodField('region_url')
 #     alt_names = serializers.StringRelatedField(many=True)
@@ -68,8 +55,3 @@ class CitySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = City
-
-
-class ContinentSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Continent
