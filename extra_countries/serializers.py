@@ -22,7 +22,6 @@ class ExtraCountrySerializer(serializers.HyperlinkedModelSerializer):
 
 class ExtraCountrySerializerShort(serializers.HyperlinkedModelSerializer):
     name = serializers.StringRelatedField(source='country.name')
-    code = serializers.StringRelatedField(source='country.code3')
     continent = ContinentShortSerializer(source='extra_continent')
     currency = CurrencyShortSerializer(source='extra_currency')
 

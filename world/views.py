@@ -76,6 +76,14 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ExtraCountrySerializer
     queryset = ExtraCountry.objects.all()
 
+    def get_queryset(self):
+        queryset = ExtraCountry.objects.all()
+        continents = self.request.query_params.get('continents', None)
+        if continents is not None:
+            continents = continents.split(',')
+            queryset = queryset.filter(extra_continent_id__in=continents)
+        return queryset
+
     def list(self, request):
         queryset = self.get_queryset()
         serializer = ExtraCountrySerializerShort(queryset, many=True, context={'request': request})
