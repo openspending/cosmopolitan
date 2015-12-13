@@ -2,6 +2,9 @@ from rest_framework import serializers
 from cities.models import Country
 from .models import ExtraCountry
 
+from currencies.models import Currency
+from continents.models import Continent
+
 
 class CountryShortSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -18,11 +21,23 @@ class CountryContinentShortSerializer(serializers.HyperlinkedModelSerializer):
 ###
 # Currencies
 ###
-from currencies.models import Currency
+
+class CurrencyShortCountrySerializer(serializers.HyperlinkedModelSerializer):
+    countries = CountryContinentShortSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Currency
+
+
+class ContinentCurrencySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Continent
+        fields = ('url', 'name', 'code')
 
 
 class CurrencySerializer(serializers.HyperlinkedModelSerializer):
     countries = CountryShortSerializer(many=True, read_only=True)
+    continents = ContinentCurrencySerializer(many=True, read_only=True)
 
     class Meta:
         model = Currency
@@ -43,9 +58,6 @@ class CurrencyContinentShortSerializer(serializers.HyperlinkedModelSerializer):
 ###
 # Continents
 ###
-
-from continents.models import Continent
-
 
 class ContinentCountrySerializer(serializers.HyperlinkedModelSerializer):
     related = CountryShortSerializer(many=True, read_only=True, source='countries')

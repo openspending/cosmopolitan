@@ -19,9 +19,9 @@ country_detail = ExtraCountryViewSet.as_view({'get': 'retrieve'})
 
 router.register(r'countries', ExtraCountryViewSet)
 router.register(r'continents', ContinentViewSet)
-router.register(r'regions', RegionViewSet)
-router.register(r'subregions', SubregionViewSet)
-router.register(r'cities', CityViewSet)
+# router.register(r'regions', RegionViewSet)
+# router.register(r'subregions', SubregionViewSet)
+# router.register(r'cities', CityViewSet)
 router.register(r'currencies', CurrencyViewSet)
 
 urlpatterns = [
