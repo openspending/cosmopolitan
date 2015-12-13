@@ -6,10 +6,7 @@ from cities.models import Subregion
 from cities.models import City
 
 from continents.models import Continent
-from continents.serializers import ContinentSerializer
-
 from currencies.models import Currency
-from currencies.serializers import CurrencySerializer
 
 from .serializers import RegionSerializer
 from .serializers import SubregionSerializer
@@ -18,6 +15,8 @@ from .serializers import CitySerializer
 from extra_countries.models import ExtraCountry
 from extra_countries.serializers import ExtraCountrySerializer
 from extra_countries.serializers import ExtraCountrySerializerShort
+from extra_countries.serializers import ContinentSerializer
+from extra_countries.serializers import CurrencySerializer
 
 
 class RegionViewSet(viewsets.ReadOnlyModelViewSet):
