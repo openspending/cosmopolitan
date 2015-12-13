@@ -8,7 +8,6 @@ from extra_countries.models import ExtraCountry
 
 from cities.models import Country
 from cities.models import Region
-from cities.models import Subregion
 from cities.models import City
 
 
@@ -26,14 +25,6 @@ class RegionFactory(factory.DjangoModelFactory):
 
     name = 'TestRegion1'
     country = factory.SubFactory(CountryFactory)
-
-
-class SubregionFactory(factory.DjangoModelFactory):
-    class Meta:
-        model = Subregion
-
-    name = 'TestSubRegion1'
-    region = factory.SubFactory(RegionFactory)
 
 
 class CityFactory(factory.DjangoModelFactory):
