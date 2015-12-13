@@ -15,7 +15,7 @@ from world.views import ExtraCountryViewSet
 router = routers.DefaultRouter()
 
 countries = ExtraCountryViewSet.as_view({'get': 'list'})
-country_detail = ExtraCountryViewSet.as_view({'get': 'detail'})
+country_detail = ExtraCountryViewSet.as_view({'get': 'retrieve'})
 
 router.register(r'countries', ExtraCountryViewSet)
 router.register(r'regions', RegionViewSet)
