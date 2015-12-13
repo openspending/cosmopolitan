@@ -62,6 +62,15 @@ class ContinentShortSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'code')
 
 
+class ContinentDetailedSerializer(serializers.HyperlinkedModelSerializer):
+    countries = CountryShortSerializer(many=True, read_only=True)
+    currencies = CurrencySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Continent
+        # fields = ('url', 'code')
+
+
 ###
 # Countries
 ###

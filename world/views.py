@@ -16,6 +16,7 @@ from extra_countries.models import ExtraCountry
 from extra_countries.serializers import ExtraCountrySerializer
 from extra_countries.serializers import ExtraCountrySerializerShort
 from extra_countries.serializers import ContinentSerializer
+from extra_countries.serializers import ContinentDetailedSerializer
 from extra_countries.serializers import CurrencySerializer
 
 
@@ -62,6 +63,11 @@ class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
     model = Continent
     serializer_class = ContinentSerializer
     queryset = Continent.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = ContinentDetailedSerializer(instance, context={'request': request})
+        return Response(serializer.data)
 
 
 class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
