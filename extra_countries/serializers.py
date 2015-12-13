@@ -27,6 +27,7 @@ class CurrencyShortCountrySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Currency
+        exclude = ('continents',)
 
 
 class ContinentCurrencySerializer(serializers.HyperlinkedModelSerializer):
