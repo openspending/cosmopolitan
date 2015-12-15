@@ -65,7 +65,7 @@ class ContinentCountrySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Continent
-        exclude = ('countries', 'geoNameId')
+        exclude = ('countries', 'geoNameId', 'currencies')
 
 
 class ContinentSerializer(serializers.HyperlinkedModelSerializer):
@@ -73,6 +73,7 @@ class ContinentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Continent
+        exclude = ('currencies',)
 
 
 class ContinentShortSerializer(serializers.HyperlinkedModelSerializer):
@@ -96,7 +97,7 @@ class ExtraCountrySerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.StringRelatedField(source='country.name')
     code = serializers.StringRelatedField(source='country.code3')
     continent = ContinentCountrySerializer(source='extra_continent')
-    currency = CurrencySerializer(source='extra_currency')
+    currency = CurrencyContinentShortSerializer(source='extra_currency')
 
     class Meta:
         model = ExtraCountry
