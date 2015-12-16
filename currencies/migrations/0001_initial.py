@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Currency',
             fields=[
-                ('code', models.CharField(max_length=3, primary_key=True, serialize=False)),
+                ('code', models.CharField(serialize=False, primary_key=True, max_length=3)),
                 ('name', models.CharField(max_length=50)),
                 ('continents', models.ManyToManyField(to='continents.Continent')),
             ],

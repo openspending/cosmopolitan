@@ -7,8 +7,8 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('currencies', '0001_initial'),
         ('continents', '0001_initial'),
+        ('currencies', '0001_initial'),
         ('cities', '0002_auto_20151112_1857'),
     ]
 
@@ -16,10 +16,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ExtraCountry',
             fields=[
-                ('code', models.CharField(max_length=3, primary_key=True, serialize=False)),
+                ('code', models.CharField(serialize=False, primary_key=True, max_length=3)),
                 ('country', models.OneToOneField(to='cities.Country')),
-                ('extra_continent', models.ForeignKey(to='continents.Continent')),
-                ('extra_currency', models.ForeignKey(to='currencies.Currency')),
+                ('extra_continent', models.ForeignKey(to='continents.Continent', null=True)),
+                ('extra_currency', models.ForeignKey(to='currencies.Currency', null=True)),
             ],
         ),
     ]

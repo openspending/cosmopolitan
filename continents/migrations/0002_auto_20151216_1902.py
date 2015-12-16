@@ -7,9 +7,9 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('continents', '0001_initial'),
         ('currencies', '0001_initial'),
         ('extra_countries', '0001_initial'),
-        ('continents', '0001_initial'),
     ]
 
     operations = [
