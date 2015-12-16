@@ -13,8 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Continent',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
-                ('code', models.CharField(max_length=2)),
+                ('code', models.CharField(max_length=2, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
                 ('geoNameId', models.PositiveIntegerField()),
             ],

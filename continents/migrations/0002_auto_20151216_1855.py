@@ -7,11 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('currencies', '0006_auto_20151207_1445'),
-        ('continents', '0004_auto_20151211_1807'),
+        ('currencies', '0001_initial'),
+        ('extra_countries', '0001_initial'),
+        ('continents', '0001_initial'),
     ]
 
     operations = [
+        migrations.AddField(
+            model_name='continent',
+            name='countries',
+            field=models.ManyToManyField(to='extra_countries.ExtraCountry', related_name='related_continent_country'),
+        ),
         migrations.AddField(
             model_name='continent',
             name='currencies',

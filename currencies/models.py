@@ -1,9 +1,8 @@
 from django.db import models
-from cities.models import Country
 
 
 class Currency(models.Model):
-    code = models.CharField(max_length=3, null=False, unique=True)
+    code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=50, null=False)
-    countries = models.ManyToManyField(Country, related_name='related_country')
+    countries = models.ManyToManyField('extra_countries.ExtraCountry', related_name='related_country')
     continents = models.ManyToManyField('continents.Continent')
