@@ -101,7 +101,7 @@ class ExtraCountrySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ExtraCountry
-        exclude = ('extra_currency', 'extra_continent')
+        exclude = ('extra_currency', 'extra_continent', 'country')
 
 
 class ExtraCountrySerializerShort(serializers.HyperlinkedModelSerializer):
@@ -111,7 +111,7 @@ class ExtraCountrySerializerShort(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ExtraCountry
-        exclude = ('extra_currency', 'extra_continent')
+        exclude = ('extra_currency', 'extra_continent', 'country')
 
 
 
