@@ -19,8 +19,11 @@ def add_currencies_with_countries(apps, schema_editor):
         except Currency.DoesNotExist: # no such currency yet
             currency = Currency(code=extra_country.country.currency,
                                 name=extra_country.country.currency_name)
-            currency.save()
-        currency.countries.add(extra_country.pk)
+            if (str(extra_country.country.currency) == '') or (str(extra_country.country.currency_name) == ''):
+                pass
+            else:
+                currency.save()
+                currency.countries.add(extra_country.pk)
 
 def reverse_data(apps, schema_editor):
     Currency = apps.get_model("currencies", "Currency")
