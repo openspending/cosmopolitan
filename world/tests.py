@@ -13,6 +13,6 @@ class ContinentTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
     factory_class = ContinentFactory
 
 
-class CurrencyTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
-    base_name = 'currency'
-    factory_class = CurrencyFactory
+# class CurrencyTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+#     base_name = 'currency'
+#     factory_class = CurrencyFactory
