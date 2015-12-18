@@ -21,8 +21,5 @@ router.register(r'currencies', CurrencyViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^v1/', include(router.urls)),
-
-    url(r'^countries/$', countries, name='country-list'),
-    url(r'^countries/(?P<pk>[0-9]+)/$', country_detail, name='country-detail'),
 ]
 urlpatterns += staticfiles_urlpatterns()
