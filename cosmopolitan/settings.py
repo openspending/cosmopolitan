@@ -42,8 +42,7 @@ INSTALLED_APPS = (
     'world',
     'continents',
     'currencies',
-    'extra_countries',
-     'django_extensions',
+    'extra_countries'
 )
 
 MIDDLEWARE_CLASSES = (
