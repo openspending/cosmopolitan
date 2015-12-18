@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('extra_countries', '0003_auto_20151217_1654'),
+        ('currencies', '0003_auto_20151216_1906')
     ]
 
     operations = [

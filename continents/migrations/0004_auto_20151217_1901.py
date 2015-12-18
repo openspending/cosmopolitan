@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('continents', '0003_auto_20151216_1903'),
+        ('extra_countries', '0002_auto_20151216_1902')
     ]
 
     operations = [
