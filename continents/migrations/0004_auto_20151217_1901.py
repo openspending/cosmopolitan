@@ -24,7 +24,7 @@ def revert_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('continents', '0004_auto_20151216_1914'),
+        ('continents', '0003_auto_20151216_1903'),
     ]
 
     operations = [
