@@ -7,8 +7,11 @@ from continents.models import Continent
 
 
 class CountryShortSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.StringRelatedField(source='country.name')
+    code = serializers.StringRelatedField(source='country.code3')
+
     class Meta:
-        model = Country
+        model = ExtraCountry
         fields = ('url', 'code', 'name')
 
 

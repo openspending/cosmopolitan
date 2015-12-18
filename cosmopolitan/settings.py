@@ -118,14 +118,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# CITIES_FILES = {
-#     'city': {
-#        'filename': 'cities5000.zip',
-#        'urls':     ['http://download.geonames.org/export/dump/'+'{filename}']
-#     },
-# }
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
