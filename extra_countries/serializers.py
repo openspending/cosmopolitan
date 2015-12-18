@@ -28,6 +28,7 @@ class CountryContinentShortSerializer(serializers.HyperlinkedModelSerializer):
 ###
 
 class CurrencyShortCountrySerializer(serializers.HyperlinkedModelSerializer):
+    code = serializers.StringRelatedField()
     countries = CountryContinentShortSerializer(many=True, read_only=True)
 
     class Meta:
@@ -42,6 +43,7 @@ class ContinentCurrencySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CurrencySerializer(serializers.HyperlinkedModelSerializer):
+    code = serializers.StringRelatedField()
     countries = CountryShortSerializer(many=True, read_only=True)
     continents = ContinentCurrencySerializer(many=True, read_only=True)
 
