@@ -3,9 +3,9 @@ from rest_assured.testcases import ListAPITestCaseMixin
 from .factory_boys import *
 
 
-# class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
-#     base_name = 'country'
-#     factory_class = ExtraCountryFactory
+class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'extracountry'
+    factory_class = ExtraCountryFactory
 
 
 class ContinentTest(BaseRESTAPITestCase, ListAPITestCaseMixin):

@@ -60,6 +60,7 @@ class ExtraCountryFactory(factory.DjangoModelFactory):
     class Meta:
         model = ExtraCountry
 
+    code = FuzzyText(length=3)
     country = factory.SubFactory(CountryFactory)
     extra_continent = factory.SubFactory(ContinentFactory)
     extra_currency = factory.SubFactory(CurrencyFactory)
