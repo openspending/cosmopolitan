@@ -8,7 +8,7 @@ from continents.models import Continent
 
 class CountryShortSerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.StringRelatedField(source='country.name')
-    code = serializers.StringRelatedField(source='country.code3')
+    code = serializers.StringRelatedField()
 
     class Meta:
         model = ExtraCountry
@@ -104,7 +104,7 @@ class ContinentDetailedSerializer(serializers.HyperlinkedModelSerializer):
 ###
 class ExtraCountrySerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.StringRelatedField(source='country.name')
-    code = serializers.StringRelatedField(source='country.code3')
+    code = serializers.StringRelatedField()
     continent = ContinentCountrySerializer(source='extra_continent')
     currency = CurrencyContinentShortSerializer(source='extra_currency')
 
