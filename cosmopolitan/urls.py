@@ -11,9 +11,6 @@ from world.views import ExtraCountryViewSet
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 
-countries = ExtraCountryViewSet.as_view({'get': 'list'})
-country_detail = ExtraCountryViewSet.as_view({'get': 'retrieve'})
-
 router.register(r'countries', ExtraCountryViewSet)
 router.register(r'continents', ContinentViewSet)
 router.register(r'currencies', CurrencyViewSet)
