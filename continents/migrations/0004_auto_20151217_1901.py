@@ -11,7 +11,7 @@ def seed_countries_to_continents(apps, schema_editor):
     Continent = apps.get_model("continents", "Continent")
 
     for extra_country in ExtraCountry.objects.all():
-        continent = Continent.objects.get(code=extra_country.country.continent)
+        continent = Continent.objects.get(code=extra_country.country.continent.lower())
         if not continent.countries.filter(pk=extra_country.pk).exists():
             print("Seeding country data for continent: %s" % continent.name)
             continent.countries.add(extra_country.pk)

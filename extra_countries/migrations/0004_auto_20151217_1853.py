@@ -13,7 +13,7 @@ def seed_currencies_to_countries(apps, schema_editor):
         print("seeding currency data for county: %s" % country.name)
         ex = ExtraCountry.objects.get(country_id=country.pk)
         try:
-            currency = Currency.objects.get(code=country.currency)
+            currency = Currency.objects.get(code=country.currency.lower())
             ex.extra_currency_id = currency.pk
             ex.save()
         except Currency.DoesNotExist:

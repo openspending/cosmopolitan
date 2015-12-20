@@ -15,7 +15,7 @@ def seed_currencies_to_continents(apps, schema_editor):
         for extra_country in continent.countries.all():
             try:
                 currency = Currency.objects.get(name=extra_country.country.currency_name,
-                                                code=extra_country.country.currency)
+                                                code=extra_country.country.currency.lower())
                 if not continent.currencies.filter(pk=currency.pk).exists():
                     print("Seeding currency %s" % currency.name)
                     continent.currencies.add(currency.pk)
