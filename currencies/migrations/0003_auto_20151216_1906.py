@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 from extra_countries.models import ExtraCountry
+from continents.models import Continent
 
 
 def add_currencies_with_countries(apps, schema_editor):
@@ -26,6 +27,9 @@ def add_currencies_with_countries(apps, schema_editor):
             currency.countries.add(extra_country.pk)
 
 def reverse_data(apps, schema_editor):
+    for continent in Continent.objects.all():
+        continent.currencies.all().delete()
+
     Currency = apps.get_model("currencies", "Currency")
     Currency.objects.all().delete()
 

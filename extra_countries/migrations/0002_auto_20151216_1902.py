@@ -16,6 +16,9 @@ def seed_data(apps, schema_editor):
         ex.save()
 
 def reverse_data(apps, schema_editor):
+    for continent in Continent.objects.all():
+        continent.countries.all().delete()
+
     ExtraCountry = apps.get_model("extra_countries", "ExtraCountry")
     ExtraCountry.objects.all().delete()
 
