@@ -9,13 +9,12 @@ from currencies.models import Currency
 
 def seed_currencies_to_countries(apps, schema_editor):
     ExtraCountry = apps.get_model("extra_countries", "ExtraCountry")
-    for country in Country.objects.all():
-        print("seeding currency data for county: %s" % country.name)
-        ex = ExtraCountry.objects.get(country_id=country.pk)
+    for extra_country in ExtraCountry.objects.all():
+        print("seeding currency data for county: %s" % extra_country.country.name)
         try:
-            currency = Currency.objects.get(code=country.currency.lower())
-            ex.extra_currency_id = currency.pk
-            ex.save()
+            currency = Currency.objects.get(code=extra_country.country.currency.lower())
+            extra_country.extra_currency_id = currency.pk
+            extra_country.save()
         except Currency.DoesNotExist:
             pass
 
