@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('continents', '0001_initial'),
-        ('cities', '0002_auto_20151229_0751'),
         ('currencies', '0001_initial'),
     ]
 
