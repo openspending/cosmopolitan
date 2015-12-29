@@ -8,6 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('continents', '0001_initial'),
+        ('cities', '0002_auto_20151229_0751'),
         ('currencies', '0001_initial'),
     ]
 
@@ -15,10 +16,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ExtraCountry',
             fields=[
-                ('code', models.CharField(serialize=False, primary_key=True, max_length=3)),
+                ('code', models.CharField(max_length=2, serialize=False, primary_key=True)),
+                ('code3', models.CharField(max_length=3)),
                 ('country', models.OneToOneField(to='cities.Country')),
-                ('extra_continent', models.ForeignKey(to='continents.Continent', null=True)),
-                ('extra_currency', models.ForeignKey(to='currencies.Currency', null=True)),
+                ('extra_continent', models.ForeignKey(null=True, to='continents.Continent')),
+                ('extra_currency', models.ForeignKey(null=True, to='currencies.Currency')),
             ],
         ),
     ]
