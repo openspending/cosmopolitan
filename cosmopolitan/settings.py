@@ -28,7 +28,7 @@ if os.getenv('DEBUG', False):
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['os-cosmopolitan.herokuapp.com']
 
 
 # Application definition
