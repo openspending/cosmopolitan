@@ -48,6 +48,4 @@ if you just pulled this repo, you need to:
 
     python manage.py migrate continents zero
 
-    python manage.py migrate continents
-    python manage.py migrate currencies
-    python manage.py migrate extra_countries
+    python manage.py migrate
