@@ -55,12 +55,6 @@ class CurrencySerializer(serializers.HyperlinkedModelSerializer):
 class CurrencyShortSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Currency
-        fields = ('code', 'url')
-
-
-class CurrencyContinentShortSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Currency
         fields = ('name', 'code', 'url')
 
 
@@ -95,7 +89,7 @@ class ContinentShortSerializer(serializers.HyperlinkedModelSerializer):
 class ContinentDetailedSerializer(serializers.HyperlinkedModelSerializer):
     code = serializers.StringRelatedField()
     countries = CountryShortSerializer(many=True, read_only=True)
-    currencies = CurrencyContinentShortSerializer(many=True, read_only=True)
+    currencies = CurrencyShortSerializer(many=True, read_only=True)
 
     class Meta:
         model = Continent
@@ -108,7 +102,7 @@ class ExtraCountrySerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.StringRelatedField(source='country.name')
     code = serializers.StringRelatedField()
     continent = ContinentCountrySerializer(source='extra_continent')
-    currency = CurrencyContinentShortSerializer(source='extra_currency')
+    currency = CurrencyShortSerializer(source='extra_currency')
 
     class Meta:
         model = ExtraCountry
