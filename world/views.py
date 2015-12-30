@@ -65,11 +65,14 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = ExtraCountrySerializer(instance, context={'request': request})
-        data = serializer.data
+        data = self._remove_self_from_related(serializer.data, request)
+        return Response(data)
+
+    def _remove_self_from_related(self, data, request):
         # remove retreived country from list of related Countries
         # to not show it twice
         for idx, current_country in enumerate(data['continent']['related']):
             request_country_code = request.path[-3:-1]
             if current_country['code'] == request_country_code:
                 del(data['continent']['related'][idx])
-        return Response(data)
+        return data
