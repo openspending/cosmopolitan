@@ -61,3 +61,15 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = self.get_queryset()
         serializer = ExtraCountrySerializerShort(queryset, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = ExtraCountrySerializer(instance, context={'request': request})
+        data = serializer.data
+        # remove retreived country from list of related Countries
+        # to not show it twice
+        for idx, current_country in enumerate(data['continent']['related']):
+            request_country_code = request.path[-3:-1]
+            if current_country['code'] == request_country_code:
+                del(data['continent']['related'][idx])
+        return Response(data)
