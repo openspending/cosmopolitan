@@ -20,7 +20,8 @@ class ContinentViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = ContinentDetailedSerializer(instance, context={'request': request})
+        serializer = ContinentDetailedSerializer(instance,
+                                                 context={'request': request})
         return Response(serializer.data)
 
 
@@ -40,8 +41,10 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = CurrencyShortCountrySerializer(queryset, many=True, context={'request': request})
-        return Response(serializer.data)
+        srializr = CurrencyShortCountrySerializer(queryset,
+                                                  many=True,
+                                                  context={'request': request})
+        return Response(srializr.data)
 
 
 class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -59,12 +62,15 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer = ExtraCountrySerializerShort(queryset, many=True, context={'request': request})
+        serializer = ExtraCountrySerializerShort(queryset,
+                                                 many=True,
+                                                 context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = ExtraCountrySerializer(instance, context={'request': request})
+        serializer = ExtraCountrySerializer(instance,
+                                            context={'request': request})
         data = self._remove_self_from_related(serializer.data, request)
         return Response(data)
 
