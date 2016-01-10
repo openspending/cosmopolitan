@@ -1,9 +1,9 @@
 from rest_assured.testcases import BaseRESTAPITestCase
 from rest_assured.testcases import ListAPITestCaseMixin
 
-from factory_boys import ExtraCountryFactory
-from factory_boys import ContinentFactory
-from factory_boys import CurrencyFactory
+from .factory_boys import ExtraCountryFactory
+from .factory_boys import ContinentFactory
+from .factory_boys import CurrencyFactory
 
 
 class CountriesTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
