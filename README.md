@@ -3,6 +3,16 @@
 # Cosmopolitan
 An API server for core data on places of the world.
 
+http://cosmopolitan.openspending.org/
+
+This API provides information about countries, cities and currencies all over the world and can be used as a cataloged data for various reasons.
+
+Just a brief summary:
+
+* contains a list of all countries in the world with country code, country continent and list of countries on the same continent;
+* contains a list of all continents in the world with a list of countries for each continent;
+* contains a list of all currencies in the world, each currency has a list of countries where this currency is being used.
+
 Based on https://github.com/coderholic/django-cities
 
 ## Using the API
