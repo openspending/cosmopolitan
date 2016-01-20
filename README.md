@@ -26,15 +26,15 @@ You could also use filters when using this API:
 
 ### Filter countries by continents
 
-* `/v1/countries/?continents={code}` - get countries of the particular continent;
-* `/v1/countries/?continents={code},{code},{code}` - get countries belongs to several continents.
+* `/v1/countries/?continents={lookup}` - get countries of the particular continent;
+* `/v1/countries/?continents={lookup},{lookup},{lookup}` - get countries belongs to several continents.
 
 Example: `GET /v1/countries/?continents=an`, `GET /v1/countries/?continents=an,af`
 
 ### Filter currencies by countries
 
-* `/v1/currencies/?countries={code}` - get currencies of the particular country;
-* `/v1/currencies/?countries={code},{code},{code}` - get currencies belongs to several countries.
+* `/v1/currencies/?countries={lookup}` - get currencies of the particular country;
+* `/v1/currencies/?countries={lookup},{lookup},{lookup}` - get currencies belongs to several countries.
 
 Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,af`
 

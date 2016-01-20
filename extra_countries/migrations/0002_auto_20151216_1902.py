@@ -12,7 +12,7 @@ def seed_data(apps, schema_editor):
     for country in Country.objects.all():
         print("seeding data for county: %s" % country.name)
         ex = ExtraCountry(country_id=country.pk,
-                          code=country.code.lower(),
+                          pk=country.code.lower(),
                           code3=country.code3.lower())
         ex.save()
 

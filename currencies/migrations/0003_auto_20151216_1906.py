@@ -16,9 +16,9 @@ def add_currencies_with_countries(apps, schema_editor):
         print("seeding currency for county: %s" % extra_country.country.name)
         # trying to find a currency with the same code first
         try:
-            currency = Currency.objects.get(code=extra_country.country.currency.lower())
+            currency = Currency.objects.get(pk=extra_country.country.currency.lower())
         except Currency.DoesNotExist: # no such currency yet
-            currency = Currency(code=extra_country.country.currency.lower(),
+            currency = Currency(pk=extra_country.country.currency.lower(),
                                 name=extra_country.country.currency_name)
         if (str(extra_country.country.currency) == '') or (str(extra_country.country.currency_name) == ''):
             pass

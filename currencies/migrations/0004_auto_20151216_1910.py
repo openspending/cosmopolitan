@@ -12,7 +12,7 @@ def add_continents_to_currencies(apps, schema_editor):
 
     for currency in Currency.objects.all():
         for extra_country in currency.countries.all():
-            continent = Continent.objects.get(code=extra_country.country.continent.lower())
+            continent = Continent.objects.get(pk=extra_country.country.continent.lower())
             if not currency.continents.filter(pk=continent.pk).exists():
                 print("Seeding continent %s" % continent.name)
                 currency.continents.add(continent.pk)

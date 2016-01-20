@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ExtraCountry',
             fields=[
-                ('code', models.CharField(max_length=2, serialize=False, primary_key=True)),
+                ('lookup', models.CharField(max_length=2, serialize=False, primary_key=True)),
                 ('code3', models.CharField(max_length=3)),
                 ('country', models.OneToOneField(to='cities.Country')),
                 ('extra_continent', models.ForeignKey(null=True, to='continents.Continent')),

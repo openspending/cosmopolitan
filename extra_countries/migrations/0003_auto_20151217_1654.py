@@ -12,7 +12,7 @@ def seed_continents_to_countries(apps, schema_editor):
     for country in Country.objects.all():
         print("seeding data for county: %s" % country.name)
         ex = ExtraCountry.objects.get(country_id=country.pk)
-        continent = Continent.objects.get(code=country.continent.lower())
+        continent = Continent.objects.get(pk=country.continent.lower())
         ex.extra_continent_id = continent.pk
         ex.save()
 
