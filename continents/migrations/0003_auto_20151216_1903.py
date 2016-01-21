@@ -10,18 +10,18 @@ def seed_data(apps, schema_editor):
     Continent = apps.get_model("continents", "Continent")
 
     continents_data = [
-                        {'lookup': 'af', 'name': 'Africa', 'geoNameId': 6255146},
-                        {'lookup': 'as', 'name': 'Asia', 'geoNameId': 6255147},
-                        {'lookup': 'eu', 'name': 'Europe', 'geoNameId': 6255148},
-                        {'lookup': 'na', 'name': 'North America', 'geoNameId': 6255149},
-                        {'lookup': 'oc', 'name': 'Oceania', 'geoNameId': 6255151},
-                        {'lookup': 'sa', 'name': 'South America', 'geoNameId': 6255150},
-                        {'lookup': 'an', 'name': 'Antarctica', 'geoNameId': 6255152},
+                        {'id': 'af', 'name': 'Africa', 'geoNameId': 6255146},
+                        {'id': 'as', 'name': 'Asia', 'geoNameId': 6255147},
+                        {'id': 'eu', 'name': 'Europe', 'geoNameId': 6255148},
+                        {'id': 'na', 'name': 'North America', 'geoNameId': 6255149},
+                        {'id': 'oc', 'name': 'Oceania', 'geoNameId': 6255151},
+                        {'id': 'sa', 'name': 'South America', 'geoNameId': 6255150},
+                        {'id': 'an', 'name': 'Antarctica', 'geoNameId': 6255152},
                       ]
 
     for continent in continents_data:
         print("seeding %s" % continent['name'])
-        c = Continent(lookup=continent['lookup'], name=continent['name'], geoNameId=continent['geoNameId'])
+        c = Continent(id=continent['id'], name=continent['name'], geoNameId=continent['geoNameId'])
         c.save()
 
 def revert_data(apps, schema_editor):

@@ -79,6 +79,6 @@ class ExtraCountryViewSet(viewsets.ReadOnlyModelViewSet):
         # to not show it twice
         for idx, current_country in enumerate(data['continent']['related']):
             request_country_code = request.path[-3:-1]
-            if current_country['lookup'] == request_country_code:
+            if current_country['id'] == request_country_code:
                 del(data['continent']['related'][idx])
         return data

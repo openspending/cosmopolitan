@@ -43,7 +43,7 @@ class ContinentFactory(factory.DjangoModelFactory):
     class Meta:
         model = Continent
 
-    lookup = FuzzyText(length=2)
+    id = FuzzyText(length=2)
     name = FuzzyText(length=6)
     geoNameId = 12
 
@@ -52,7 +52,7 @@ class CurrencyFactory(factory.DjangoModelFactory):
     class Meta:
         model = Currency
 
-    lookup = FuzzyText(length=2)
+    id = FuzzyText(length=2)
     name = FuzzyText(length=6)
 
 
@@ -60,7 +60,7 @@ class ExtraCountryFactory(factory.DjangoModelFactory):
     class Meta:
         model = ExtraCountry
 
-    lookup = FuzzyText(length=2)
+    id = FuzzyText(length=2)
     country = factory.SubFactory(CountryFactory)
     extra_continent = factory.SubFactory(ContinentFactory)
     extra_currency = factory.SubFactory(CurrencyFactory)
