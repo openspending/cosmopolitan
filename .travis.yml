@@ -9,7 +9,7 @@ services: postgresql
 env:
   global:
     - BUILD_ON_TRAVIS=true
-    - DJANGO_SETTINGS_MODULE="cosmopolitan.settings"
+    - DJANGO_SETTINGS_MODULE="application.settings"
     - PYTHONPATH="/home/travis/build/kiote/cosmopolitan"
     - PIP_USE_MIRRORS=true
   matrix:
@@ -29,6 +29,6 @@ before_script:
 #command to run the test suite
 script:
   - python manage.py test
-  - coverage run --source=world,currencies,continents manage.py test
+  - coverage run --source=cosmopolitan manage.py test
 
 after_success: coveralls
