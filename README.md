@@ -43,7 +43,7 @@ Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,a
 
 Under virtual env:
 
-    . env/bin/activate
+    source env/bin/activate
 
     export LOCAL_DEV=1
 

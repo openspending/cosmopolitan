@@ -39,10 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'rest_framework',
     'cities',
-    'world',
-    'continents',
-    'currencies',
-    'extra_countries'
+    'cosmopolitan',
+    # 'world',
+    # 'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,7 +50,7 @@ MIDDLEWARE_CLASSES = (
     'middleware.url.LowercaseMiddleware',
 )
 
-ROOT_URLCONF = 'cosmopolitan.urls'
+ROOT_URLCONF = 'application.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cosmopolitan.wsgi.application'
+WSGI_APPLICATION = 'application.wsgi.application'
 
 
 # Database
