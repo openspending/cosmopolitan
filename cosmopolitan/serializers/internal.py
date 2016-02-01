@@ -1,8 +1,10 @@
 from cosmopolitan.models import Continent
 from cosmopolitan.models import Currency
 from cosmopolitan.models import Country
+from cosmopolitan.models import Region
 
 from cosmopolitan.serializers.common import CountrySerializer
+from cosmopolitan.serializers.common import RegionSerializer
 from cosmopolitan.serializers.common import ContinentSerializer
 
 
@@ -21,6 +23,12 @@ class CurrencyShortSerializer(CountrySerializer):
 class ContinentShortSerializer(CountrySerializer):
     class Meta:
         model = Continent
+        fields = ('id', 'url')
+
+
+class RegionShortSerializer(RegionSerializer):
+    class Meta:
+        model = Region
         fields = ('id', 'url')
 
 

@@ -3,40 +3,12 @@ from factory.fuzzy import FuzzyText
 
 from django.contrib.gis.geos import GEOSGeometry
 
-from cosmopolitan.models import Continent
-from cosmopolitan.models import Currency
-from cosmopolitan.models import Country
-
-from cities.models import Country as CitiesCountry
-from cities.models import Region
-from cities.models import City
-
-
-class CitiesCountryFactory(factory.DjangoModelFactory):
-    class Meta:
-        model = CitiesCountry
-
-    name = FuzzyText(length=6)
-    population = 1
-
-
-class RegionFactory(factory.DjangoModelFactory):
-    class Meta:
-        model = Region
-
-    name = FuzzyText(length=6)
-    country = factory.SubFactory(CitiesCountryFactory)
-
-
-class CityFactory(factory.DjangoModelFactory):
-    class Meta:
-        model = City
-
-    name = FuzzyText(length=6)
-    location = GEOSGeometry('POINT(5 23)')
-    population = 1
-    country = factory.SubFactory(CitiesCountryFactory)
-    region = factory.SubFactory(RegionFactory)
+from .models import Continent
+from .models import Currency
+from .models import Country
+from .models import City
+from .models import Postcode
+from .models import Region
 
 
 class ContinentFactory(factory.DjangoModelFactory):
@@ -64,3 +36,33 @@ class CountryFactory(factory.DjangoModelFactory):
     population = 2
     continent = factory.SubFactory(ContinentFactory)
     currency = factory.SubFactory(CurrencyFactory)
+
+
+class CityFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = City
+
+    id = FuzzyText(length=2)
+    name = FuzzyText(length=6)
+    location = GEOSGeometry('POINT(5 23)')
+    population = 1
+    country = factory.SubFactory(CountryFactory)
+
+
+class RegionFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Region
+
+    id = FuzzyText(length=2)
+    name = FuzzyText(length=4)
+    country = factory.SubFactory(CountryFactory)
+
+
+class PostcodeFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Postcode
+
+    id = FuzzyText(length=2)
+    location = GEOSGeometry('POINT(5 23)')
+    country = factory.SubFactory(CountryFactory)
+    region = factory.SubFactory(RegionFactory)
