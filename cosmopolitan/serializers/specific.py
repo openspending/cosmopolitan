@@ -1,14 +1,22 @@
 from cosmopolitan.models import Continent
 from cosmopolitan.models import Currency
 from cosmopolitan.models import Country
+from cosmopolitan.models import City
+from cosmopolitan.models import Region
+from cosmopolitan.models import Postcode
 
 from cosmopolitan.serializers.common import CurrencySerializer
 from cosmopolitan.serializers.common import CountrySerializer
 from cosmopolitan.serializers.common import ContinentSerializer
+from cosmopolitan.serializers.common import CitySerializer
+from cosmopolitan.serializers.common import RegionSerializer
+from cosmopolitan.serializers.common import PostcodeSerializer
 
 from cosmopolitan.serializers.internal import CountryShortSerializer
 from cosmopolitan.serializers.internal import ContinentShortSerializer
 from cosmopolitan.serializers.internal import CurrencyShortSerializer
+from cosmopolitan.serializers.internal import RegionShortSerializer
+
 from cosmopolitan.serializers.internal import ContinentWithRelatedSerializer
 
 class CurrencyListSerializer(CurrencySerializer):
@@ -55,3 +63,51 @@ class CountryDetailSerializer(CountrySerializer):
     class Meta:
         model = Country
         fields = ('id', 'url', 'name', 'continent', 'currency')
+
+
+class CityListSerializer(CitySerializer):
+    country = CountryShortSerializer()
+    region = RegionShortSerializer(allow_null=True)
+    class Meta:
+        model = City
+        fields = ('id', 'url', 'name', 'name_std', 'kind', 'country', 'region')
+
+
+class CityDetailSerializer(CitySerializer):
+    country = CountryShortSerializer()
+    region = RegionShortSerializer(allow_null=True)
+    class Meta:
+        model = City
+        fields = ('id', 'url', 'name', 'name_std', 'kind', 'country',
+                  'region', 'location', 'population', 'elevation', 'timezone')
+
+
+class RegionListSerializer(RegionSerializer):
+    country = CountryShortSerializer()
+    class Meta:
+        model = Region
+        fields = ('id', 'url', 'name', 'country')
+
+
+class RegionDetailSerializer(RegionSerializer):
+    country = CountrySerializer()
+    continent = ContinentSerializer(source='country.continent')
+    class Meta:
+        model = Region
+        fields = ('id', 'url', 'name', 'country', 'continent')
+
+
+class PostcodeListSerializer(PostcodeSerializer):
+    country = CountryShortSerializer()
+    region = RegionShortSerializer()
+    class Meta:
+        model = Postcode
+        fields = ('id', 'url', 'country', 'region')
+
+
+class PostcodeDetailSerializer(PostcodeSerializer):
+    country = CountryListSerializer()
+    region = RegionSerializer()
+    class Meta:
+        model = Postcode
+        fields = ('id', 'url', 'country', 'region')
