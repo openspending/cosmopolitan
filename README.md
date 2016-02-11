@@ -66,5 +66,5 @@ if you just pulled this repo, you need to:
 
 Data sources licensies:
 
-- [GeoNames]((http://www.geonames.org/about.html)) is under a creative commons attribution license.
+- [GeoNames](http://www.geonames.org/about.html) is under a creative commons attribution license.
 - [NaturalEarthData terms of use](naturalearthdata.com/about/terms-of-use/)
