@@ -1,3 +1,5 @@
+from rest_framework import serializers
+
 from cosmopolitan.models import Continent
 from cosmopolitan.models import Currency
 from cosmopolitan.models import Country
@@ -22,13 +24,17 @@ from cosmopolitan.serializers.internal import RegionShortSerializer
 from cosmopolitan.serializers.internal import ContinentWithRelatedSerializer
 
 
-class PolygonListSerializer(PolygonSerializer):
+class CountryPolygonListSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='countrypolygon-detail')
+
     class Meta:
         model = Polygon
         fields = ('id', 'url', 'type', 'type_id')
 
 
-class PolygonDetailSerializer(PolygonSerializer):
+class CountryPolygonDetailSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='countrypolygon-detail')
+
     class Meta:
         model = Polygon
         fields = ('id', 'url', 'type', 'type_id', 'polygon')
