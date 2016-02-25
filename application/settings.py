@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'cities',
     'cosmopolitan',
-    'django_extensions'
+    # 'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (

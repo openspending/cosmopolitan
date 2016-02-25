@@ -40,6 +40,22 @@ class CountryPolygonDetailSerializer(PolygonSerializer):
         fields = ('id', 'url', 'type', 'type_id', 'polygon')
 
 
+class CityPolygonListSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='citypolygon-detail')
+
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id')
+
+
+class CityPolygonDetailSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='citypolygon-detail')
+
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id', 'polygon')
+
+
 class CurrencyListSerializer(CurrencySerializer):
     countries = CountryShortSerializer(many=True, read_only=True)
     class Meta:

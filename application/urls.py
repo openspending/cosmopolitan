@@ -11,6 +11,7 @@ from cosmopolitan.viewsets import CityViewSet
 from cosmopolitan.viewsets import CurrencyViewSet
 from cosmopolitan.viewsets import PostcodeViewSet
 from cosmopolitan.viewsets import CountryPolygonViewSet
+from cosmopolitan.viewsets import CityPolygonViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -23,6 +24,7 @@ router.register(r'currencies', CurrencyViewSet, base_name='currency')
 router.register(r'postcodes', PostcodeViewSet, base_name='postcode')
 
 router.register(r'countrypolygons', CountryPolygonViewSet, base_name='countrypolygon')
+router.register(r'citypolygons', CityPolygonViewSet, base_name='citypolygon')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

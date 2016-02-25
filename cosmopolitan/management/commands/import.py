@@ -46,7 +46,7 @@ class Command(BaseCommand):
         ds.add_regions_to_postcodes()
 
     def _import_naturalearthdata(self):
-        # ned.process_countries()
+        ned.process_countries()
         ned.process_cities()
 
     def _import_all(self):

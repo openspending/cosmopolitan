@@ -32,6 +32,9 @@ from .serializers.specific import PostcodeDetailSerializer
 from .serializers.specific import CountryPolygonListSerializer
 from .serializers.specific import CountryPolygonDetailSerializer
 
+from .serializers.specific import CityPolygonListSerializer
+from .serializers.specific import CityPolygonDetailSerializer
+
 
 class CityViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
     model = City
@@ -136,3 +139,12 @@ class CountryPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyM
 
     def get_queryset(self):
         return Polygon.objects.filter(type="country")
+
+
+class CityPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+    model = Polygon
+    list_serializer = CityPolygonListSerializer
+    detail_serializer = CityPolygonDetailSerializer
+
+    def get_queryset(self):
+        return Polygon.objects.filter(type="city")
