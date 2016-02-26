@@ -74,3 +74,4 @@ class PolygonFactory(factory.DjangoModelFactory):
         model = Polygon
 
     id = FuzzyText(length=6)
+    type = 'country'

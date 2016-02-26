@@ -47,6 +47,7 @@ class Command(BaseCommand):
 
     def _import_naturalearthdata(self):
         ned.process_countries()
+        ned.process_cities()
 
     def _import_all(self):
         self._import_django_cities()

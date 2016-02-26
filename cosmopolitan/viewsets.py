@@ -29,8 +29,11 @@ from .serializers.specific import CurrencyDetailSerializer
 from .serializers.specific import PostcodeListSerializer
 from .serializers.specific import PostcodeDetailSerializer
 
-from .serializers.specific import PolygonListSerializer
-from .serializers.specific import PolygonDetailSerializer
+from .serializers.specific import CountryPolygonListSerializer
+from .serializers.specific import CountryPolygonDetailSerializer
+
+from .serializers.specific import CityPolygonListSerializer
+from .serializers.specific import CityPolygonDetailSerializer
 
 
 class CityViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
@@ -129,8 +132,19 @@ class CountryViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelVie
         return data
 
 
-class PolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CountryPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
     model = Polygon
-    queryset = Polygon.objects.all()
-    list_serializer = PolygonListSerializer
-    detail_serializer = PolygonDetailSerializer
+    list_serializer = CountryPolygonListSerializer
+    detail_serializer = CountryPolygonDetailSerializer
+
+    def get_queryset(self):
+        return Polygon.objects.filter(type="country")
+
+
+class CityPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+    model = Polygon
+    list_serializer = CityPolygonListSerializer
+    detail_serializer = CityPolygonDetailSerializer
+
+    def get_queryset(self):
+        return Polygon.objects.filter(type="city")
