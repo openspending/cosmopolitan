@@ -17,7 +17,8 @@ IMPORT_OPTS = [
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option("--from", metavar="IMPORT_SOURCE", default='all',
-                    help="Selectively import data. Comma separated list of import sources: "
+                    help="""Selectively import data.
+                    Comma separated list of import sources: """
                     + str(IMPORT_OPTS).replace("'", "")
                    ),
     )
@@ -48,6 +49,7 @@ class Command(BaseCommand):
     def _import_naturalearthdata(self):
         ned.process_countries()
         ned.process_cities()
+        ned.process_regions()
 
     def _import_all(self):
         self._import_django_cities()

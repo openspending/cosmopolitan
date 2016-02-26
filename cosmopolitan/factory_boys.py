@@ -69,9 +69,25 @@ class PostcodeFactory(factory.DjangoModelFactory):
     region = factory.SubFactory(RegionFactory)
 
 
-class PolygonFactory(factory.DjangoModelFactory):
+class CountryPolygonFactory(factory.DjangoModelFactory):
     class Meta:
         model = Polygon
 
     id = FuzzyText(length=6)
-    type = 'country'
+    type = "country"
+
+
+class CityPolygonFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Polygon
+
+    id = FuzzyText(length=6)
+    type = "city"
+
+
+class RegionPolygonFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Polygon
+
+    id = FuzzyText(length=6)
+    type = "region"
