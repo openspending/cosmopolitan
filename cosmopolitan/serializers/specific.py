@@ -56,8 +56,25 @@ class CityPolygonDetailSerializer(PolygonSerializer):
         fields = ('id', 'url', 'type', 'type_id', 'polygon')
 
 
+class RegionPolygonListSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='regionpolygon-detail')
+
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id')
+
+
+class RegionPolygonDetailSerializer(PolygonSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='regionpolygon-detail')
+
+    class Meta:
+        model = Polygon
+        fields = ('id', 'url', 'type', 'type_id', 'polygon')
+
+
 class CurrencyListSerializer(CurrencySerializer):
     countries = CountryShortSerializer(many=True, read_only=True)
+
     class Meta:
         model = Currency
         fields = ('id', 'url', 'name', 'countries')
@@ -66,6 +83,7 @@ class CurrencyListSerializer(CurrencySerializer):
 class CurrencyDetailSerializer(CurrencySerializer):
     countries = CountrySerializer(many=True, read_only=True)
     continents = ContinentSerializer(many=True, read_only=True)
+
     class Meta:
         model = Currency
         fields = ('id', 'url', 'name', 'countries', 'continents')
@@ -73,6 +91,7 @@ class CurrencyDetailSerializer(CurrencySerializer):
 
 class ContinentListSerializer(ContinentSerializer):
     countries = CountryShortSerializer(many=True, read_only=True)
+
     class Meta:
         model = Continent
         fields = ('id', 'url', 'name', 'countries')
@@ -81,6 +100,7 @@ class ContinentListSerializer(ContinentSerializer):
 class ContinentDetailSerializer(ContinentSerializer):
     countries = CountrySerializer(many=True, read_only=True)
     currencies = CurrencySerializer(many=True, read_only=True)
+
     class Meta:
         model = Continent
         fields = ('id', 'url', 'name', 'countries', 'currencies')
@@ -98,6 +118,7 @@ class CountryListSerializer(CountrySerializer):
 class CountryDetailSerializer(CountrySerializer):
     currency = CurrencySerializer()
     continent = ContinentWithRelatedSerializer()
+
     class Meta:
         model = Country
         fields = ('id', 'url', 'name', 'continent', 'currency')
@@ -106,6 +127,7 @@ class CountryDetailSerializer(CountrySerializer):
 class CityListSerializer(CitySerializer):
     country = CountryShortSerializer()
     region = RegionShortSerializer(allow_null=True)
+
     class Meta:
         model = City
         fields = ('id', 'url', 'name', 'name_std', 'kind', 'country', 'region')
@@ -114,6 +136,7 @@ class CityListSerializer(CitySerializer):
 class CityDetailSerializer(CitySerializer):
     country = CountryShortSerializer()
     region = RegionShortSerializer(allow_null=True)
+
     class Meta:
         model = City
         fields = ('id', 'url', 'name', 'name_std', 'kind', 'country',
@@ -122,6 +145,7 @@ class CityDetailSerializer(CitySerializer):
 
 class RegionListSerializer(RegionSerializer):
     country = CountryShortSerializer()
+
     class Meta:
         model = Region
         fields = ('id', 'url', 'name', 'country')
@@ -130,6 +154,7 @@ class RegionListSerializer(RegionSerializer):
 class RegionDetailSerializer(RegionSerializer):
     country = CountrySerializer()
     continent = ContinentSerializer(source='country.continent')
+
     class Meta:
         model = Region
         fields = ('id', 'url', 'name', 'country', 'continent')
@@ -138,6 +163,7 @@ class RegionDetailSerializer(RegionSerializer):
 class PostcodeListSerializer(PostcodeSerializer):
     country = CountryShortSerializer()
     region = RegionShortSerializer()
+
     class Meta:
         model = Postcode
         fields = ('id', 'url', 'country', 'region')
@@ -146,6 +172,7 @@ class PostcodeListSerializer(PostcodeSerializer):
 class PostcodeDetailSerializer(PostcodeSerializer):
     country = CountryListSerializer()
     region = RegionSerializer()
+
     class Meta:
         model = Postcode
         fields = ('id', 'url', 'country', 'region')

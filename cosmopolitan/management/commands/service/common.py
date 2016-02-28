@@ -7,6 +7,7 @@ HOST = "http://naciscdn.org"
 HTTP_PATH = "/naturalearth/10m/cultural/"
 FOLDER = "data/"
 
+
 def prepare_data(file_data={}):
     file_name = FOLDER + file_data["file_name"]
 
@@ -25,4 +26,5 @@ def prepare_data(file_data={}):
     sos._format_ogr2ogr(path=FOLDER + file_data["file_name_without_extension"],
                         file_name=file_data["file_name_without_extension"])
     # handle *.Polygon file
-    return sos.LoadPolygon(FOLDER + file_data["file_name_without_extension"]).run()
+    file_full_path = FOLDER + file_data["file_name_without_extension"]
+    return sos.LoadPolygon(file_full_path).run()

@@ -1,8 +1,8 @@
-import os
 import json
 
 from cosmopolitan.models import Country
 from cosmopolitan.models import City
+from cosmopolitan.models import Region
 from cosmopolitan.models import Polygon
 
 import cosmopolitan.management.commands.service.common as common
@@ -11,9 +11,21 @@ import cosmopolitan.management.commands.service.common as common
 # http://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
 
 COUNTRIES = {
-                "file_name_without_extension": "ne_10m_admin_0_countries",
-                "file_name": "ne_10m_admin_0_countries.zip",
-            }
+    "file_name_without_extension": "ne_10m_admin_0_countries",
+    "file_name": "ne_10m_admin_0_countries.zip",
+}
+
+CITIES = {
+    "file_name_without_extension": "ne_10m_populated_places",
+    "file_name": "ne_10m_populated_places.zip",
+}
+
+
+REGIONS = {
+    "file_name_without_extension": "ne_10m_admin_1_states_provinces",
+    "file_name": "ne_10m_admin_1_states_provinces.zip",
+}
+
 
 def process_countries():
     data = common.prepare_data(COUNTRIES)
@@ -29,20 +41,16 @@ def process_countries():
         except Country.DoesNotExist:
             print('Not found: ' + json_country_code, end='')
 
-        country_polygon = Polygon(id="%s:%s" % ("country", country.id))
-        country_polygon.type = "country"
-        country_polygon.type_id = country.id
-        country_polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
-        country_polygon.save()
+        polygon = Polygon(id="%s:%s" % ("country", country.id))
+        polygon.type = "country"
+        polygon.type_id = country.id
+        polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
+        polygon.save()
 
         print(".", end="", flush=True)
 
     print("\nFinish.")
 
-CITIES = {
-            "file_name_without_extension": "ne_10m_populated_places",
-            "file_name": "ne_10m_populated_places.zip",
-         }
 
 def process_cities():
     data = common.prepare_data(CITIES)
@@ -57,13 +65,45 @@ def process_cities():
             if json_city_name is None:
                 continue
             city = City.objects.get(name=json_city_name)
-            city_polygon = Polygon(id="%s:%s" % ("city", city.id))
-            city_polygon.type = "city"
-            city_polygon.type_id = city.id
-            city_polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
-            city_polygon.save()
+            polygon = Polygon(id="%s:%s" % ("city", city.id))
+            polygon.type = "city"
+            polygon.type_id = city.id
+            polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
+            polygon.save()
             print(".", end="", flush=True)
         except City.DoesNotExist:
             pass
 
     print("\nFinish.")
+
+
+def process_regions():
+    data = common.prepare_data(REGIONS)
+
+    print("\n--- Seeding regions: ---")
+
+    Polygon.objects.filter(type='region').delete()
+
+    saved = 0
+
+    for feature in data["features"]:
+        json_region_name = feature["properties"]["name"]
+        try:
+            if json_region_name is None:
+                continue
+            region = Region.objects.get(name=json_region_name)
+            polygon = Polygon(id="%s:%s" % ("region", region.id))
+            polygon.type = "region"
+            polygon.type_id = region.id
+            polygon.polygon = json.dumps(feature["geometry"]["coordinates"])
+            polygon.save()
+            print(".", end="", flush=True)
+            saved += 1
+        except (Region.DoesNotExist, Region.MultipleObjectsReturned):
+            pass
+
+    in_file = 4651
+
+    print("""\nRegions in our database: %d,
+          regions in file: %d, regions matched: %d"""
+          % (len(Region.objects.all()), in_file, saved))

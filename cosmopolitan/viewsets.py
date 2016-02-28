@@ -3,40 +3,44 @@ from rest_framework.response import Response
 
 from cosmopolitan import mixins
 
-from .models import Continent
-from .models import Currency
-from .models import Country
-from .models import City
-from .models import Region
-from .models import Postcode
-from .models import Polygon
+from cosmopolitan.models import Continent
+from cosmopolitan.models import Currency
+from cosmopolitan.models import Country
+from cosmopolitan.models import City
+from cosmopolitan.models import Region
+from cosmopolitan.models import Postcode
+from cosmopolitan.models import Polygon
 
-from .serializers.specific import ContinentListSerializer
-from .serializers.specific import ContinentDetailSerializer
+from cosmopolitan.serializers.specific import ContinentListSerializer
+from cosmopolitan.serializers.specific import ContinentDetailSerializer
 
-from .serializers.specific import CountryListSerializer
-from .serializers.specific import CountryDetailSerializer
+from cosmopolitan.serializers.specific import CountryListSerializer
+from cosmopolitan.serializers.specific import CountryDetailSerializer
 
-from .serializers.specific import RegionListSerializer
-from .serializers.specific import RegionDetailSerializer
+from cosmopolitan.serializers.specific import RegionListSerializer
+from cosmopolitan.serializers.specific import RegionDetailSerializer
 
-from .serializers.specific import CityListSerializer
-from .serializers.specific import CityDetailSerializer
+from cosmopolitan.serializers.specific import CityListSerializer
+from cosmopolitan.serializers.specific import CityDetailSerializer
 
-from .serializers.specific import CurrencyListSerializer
-from .serializers.specific import CurrencyDetailSerializer
+from cosmopolitan.serializers.specific import CurrencyListSerializer
+from cosmopolitan.serializers.specific import CurrencyDetailSerializer
 
-from .serializers.specific import PostcodeListSerializer
-from .serializers.specific import PostcodeDetailSerializer
+from cosmopolitan.serializers.specific import PostcodeListSerializer
+from cosmopolitan.serializers.specific import PostcodeDetailSerializer
 
-from .serializers.specific import CountryPolygonListSerializer
-from .serializers.specific import CountryPolygonDetailSerializer
+from cosmopolitan.serializers.specific import CountryPolygonListSerializer
+from cosmopolitan.serializers.specific import CountryPolygonDetailSerializer
 
-from .serializers.specific import CityPolygonListSerializer
-from .serializers.specific import CityPolygonDetailSerializer
+from cosmopolitan.serializers.specific import CityPolygonListSerializer
+from cosmopolitan.serializers.specific import CityPolygonDetailSerializer
+
+from cosmopolitan.serializers.specific import RegionPolygonListSerializer
+from cosmopolitan.serializers.specific import RegionPolygonDetailSerializer
 
 
-class CityViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CityViewSet(mixins.ListDetailSerializerMixin,
+                  viewsets.ReadOnlyModelViewSet):
     model = City
     list_serializer = CityListSerializer
     detail_serializer = CityDetailSerializer
@@ -51,14 +55,16 @@ class CityViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSe
         return queryset
 
 
-class ContinentViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class ContinentViewSet(mixins.ListDetailSerializerMixin,
+                       viewsets.ReadOnlyModelViewSet):
     model = Continent
     queryset = Continent.objects.all()
     list_serializer = ContinentListSerializer
     detail_serializer = ContinentDetailSerializer
 
 
-class CurrencyViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CurrencyViewSet(mixins.ListDetailSerializerMixin,
+                      viewsets.ReadOnlyModelViewSet):
     model = Currency
     list_serializer = CurrencyListSerializer
     detail_serializer = CurrencyDetailSerializer
@@ -73,7 +79,8 @@ class CurrencyViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelVi
         return queryset
 
 
-class RegionViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class RegionViewSet(mixins.ListDetailSerializerMixin,
+                    viewsets.ReadOnlyModelViewSet):
     model = Region
     list_serializer = RegionListSerializer
     detail_serializer = RegionDetailSerializer
@@ -87,7 +94,8 @@ class RegionViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelView
         return queryset
 
 
-class PostcodeViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class PostcodeViewSet(mixins.ListDetailSerializerMixin,
+                      viewsets.ReadOnlyModelViewSet):
     model = Postcode
     list_serializer = PostcodeListSerializer
     detail_serializer = PostcodeDetailSerializer
@@ -101,7 +109,8 @@ class PostcodeViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelVi
         return queryset
 
 
-class CountryViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CountryViewSet(mixins.ListDetailSerializerMixin,
+                     viewsets.ReadOnlyModelViewSet):
     model = Country
     list_serializer = CountryListSerializer
     detail_serializer = CountryDetailSerializer
@@ -128,11 +137,12 @@ class CountryViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelVie
         for idx, current_country in enumerate(data['continent']['related']):
             request_country_code = request.path[-3:-1]
             if current_country['id'] == request_country_code:
-                del(data['continent']['related'][idx])
+                del data['continent']['related'][idx]
         return data
 
 
-class CountryPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CountryPolygonViewSet(mixins.ListDetailSerializerMixin,
+                            viewsets.ReadOnlyModelViewSet):
     model = Polygon
     list_serializer = CountryPolygonListSerializer
     detail_serializer = CountryPolygonDetailSerializer
@@ -141,10 +151,21 @@ class CountryPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyM
         return Polygon.objects.filter(type="country")
 
 
-class CityPolygonViewSet(mixins.ListDetailSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class CityPolygonViewSet(mixins.ListDetailSerializerMixin,
+                         viewsets.ReadOnlyModelViewSet):
     model = Polygon
     list_serializer = CityPolygonListSerializer
     detail_serializer = CityPolygonDetailSerializer
 
     def get_queryset(self):
         return Polygon.objects.filter(type="city")
+
+
+class RegionPolygonViewSet(mixins.ListDetailSerializerMixin,
+                           viewsets.ReadOnlyModelViewSet):
+    model = Polygon
+    list_serializer = RegionPolygonListSerializer
+    detail_serializer = RegionPolygonDetailSerializer
+
+    def get_queryset(self):
+        return Polygon.objects.filter(type="region")

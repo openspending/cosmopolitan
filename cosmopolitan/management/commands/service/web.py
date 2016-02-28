@@ -2,6 +2,7 @@ from urllib import request
 
 import cosmopolitan.management.commands.service.os as sos
 
+
 class Webfile(object):
     """
     File downloaded from web
@@ -24,8 +25,8 @@ class Webfile(object):
         try:
             res = request.urlretrieve(self.url, self.file_name)
         except Exception as e:
-            sos._super_log("Was about to retreive %s, but got error: %s" \
-                       % (self.url, str(e)))
+            sos._super_log("Was about to retreive %s, but got error: %s"
+                           % (self.url, str(e)))
             return None
 
         return res

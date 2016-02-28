@@ -33,6 +33,16 @@ class RegionTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
     factory_class = RegionFactory
 
 
-# class PolygonTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
-#     base_name = 'countypolygon'
-#     factory_class = PolygonFactory
+class CityPolygonTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'citypolygon'
+    factory_class = CityPolygonFactory
+
+
+class CountryPolygonTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'countrypolygon'
+    factory_class = CountryPolygonFactory
+
+
+class RegionPolygonTest(BaseRESTAPITestCase, ListAPITestCaseMixin):
+    base_name = 'regionpolygon'
+    factory_class = RegionPolygonFactory
