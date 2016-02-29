@@ -2,6 +2,7 @@
 .DS_Store
 env/
 data/
+venv2.7/
 __pycache__/
 *.py[cod]
 
