@@ -24,20 +24,27 @@ API has self-documented format, so when you request to `/` (root of the API with
 
 You could also use filters when using this API:
 
-### Filter countries by continents
+### Filter: countries by continents
 
 * `/v1/countries/?continents={id}` - get countries of the particular continent;
 * `/v1/countries/?continents={id},{id},{id}` - get countries belongs to several continents.
 
 Example: `GET /v1/countries/?continents=an`, `GET /v1/countries/?continents=an,af`
 
-### Filter currencies by countries
+### Filter: currencies by countries
 
 * `/v1/currencies/?countries={id}` - get currencies of the particular country;
 * `/v1/currencies/?countries={id},{id},{id}` - get currencies belongs to several countries.
 
 Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,af`
 
+### Filter: countries polygons by countries
+
+* `/v1/countrypolygons/?countries={id},{id},{id}`
+
+### Filter: get list of countries polygons for region(s)
+
+* `/v1/countrypolygons/?regions={id},{id},{id}`
 
 ## Running locally
 
