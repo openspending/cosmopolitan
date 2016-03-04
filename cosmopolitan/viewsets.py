@@ -148,7 +148,21 @@ class CountryPolygonViewSet(mixins.ListDetailSerializerMixin,
     detail_serializer = CountryPolygonDetailSerializer
 
     def get_queryset(self):
-        return Polygon.objects.filter(type="country")
+        queryset = Polygon.objects.filter(type='country')
+        countries = self.request.query_params.get('countries', None)
+        continents = self.request.query_params.get('continents', None)
+
+        if countries is not None:
+            countries = countries.split(',')
+            queryset = queryset.filter(type_id__in=countries)
+
+        if continents is not None:
+            continents = continents.split(',')
+            country_list = Country.objects.filter(continent_id__in=continents)
+            country_list = [country.id for country in country_list]
+            queryset = queryset.filter(type_id__in=country_list)
+
+        return queryset
 
 
 class CityPolygonViewSet(mixins.ListDetailSerializerMixin,
