@@ -46,6 +46,14 @@ Example: `GET /v1/currencies/?countries=aq`, `GET /v1/currencies/?countries=aq,a
 
 * `/v1/countrypolygons/?regions={id},{id},{id}`
 
+### Filter: all polygons by countries
+
+* `/v1/polygons/?countries={id},{id},{id}`
+
+### Filter: get list of all polygons for region(s)
+
+* `/v1/polygons/?regions={id},{id},{id}`
+
 ## Running locally
 
 Under virtual env (to create virtualenv, run `python3 -m venv env`):
