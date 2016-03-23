@@ -28,7 +28,7 @@ if os.getenv('DEBUG', False):
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['os-cosmopolitan.herokuapp.com']
+ALLOWED_HOSTS = ['os-cosmopolitan.herokuapp.com', 'cosmopolitan.openspending.org']
 
 
 # Application definition
@@ -41,11 +41,13 @@ INSTALLED_APPS = (
     'rest_framework',
     'cities',
     'cosmopolitan',
+    'corsheaders'
     # 'django_extensions'
 )
 
 MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'middleware.url.LowercaseMiddleware',
 )
@@ -129,3 +131,6 @@ REST_FRAMEWORK = {
 }
 
 CITIES_POSTAL_CODES = ['ALL']
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
