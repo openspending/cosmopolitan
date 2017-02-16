@@ -24,6 +24,7 @@ RUN apk add --no-cache --virtual build-dependencies \
     libxslt-dev \
  && apk add --no-cache --update \
     python3 \
+    readline \
     bzip2 \
     bash \
     gettext \
@@ -33,7 +34,6 @@ RUN apk add --no-cache --virtual build-dependencies \
     libjpeg-turbo \
     libpng \
     postgresql-client \
-    postgis \
     make \
  && update-ca-certificates \
  && make install \
