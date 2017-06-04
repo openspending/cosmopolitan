@@ -9,7 +9,7 @@ from cosmopolitan.models import Polygon
 
 from cosmopolitan.management.commands.service.common import prepare_data
 
-# countrise data URL
+# countries data URL
 # http://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip
 
 COUNTRIES = {
@@ -62,11 +62,11 @@ def process_cities():
     Polygon.objects.filter(type='city').delete()
 
     for feature in data["features"]:
-        json_city_name = feature["properties"]["GN_ASCII"]
+        json_city_id = int(feature["properties"]["GEONAMEID"])
         try:
-            if json_city_name is None:
+            if json_city_id is 0:
                 continue
-            city = City.objects.get(name=json_city_name)
+            city = City.objects.get(id=str(json_city_id))
             polygon = Polygon(id="%s:%s" % ("city", city.id))
             polygon.type = "city"
             polygon.type_id = city.id
