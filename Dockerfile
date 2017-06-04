@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.4
+FROM gliderlabs/alpine:edge
 
 MAINTAINER Paul Walsh <paulywalsh@gmail.com>
 
@@ -9,11 +9,13 @@ COPY . ${APP_DIR}
 
 WORKDIR ${APP_DIR}
 
+RUN echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing/' >>  /etc/apk/repositories
+
 RUN apk add --no-cache --virtual build-dependencies \
     build-base \
     linux-headers \
     python3-dev \
-    openssl-dev \
+    libressl-dev \
     readline-dev \
     git \
     curl \
@@ -29,12 +31,15 @@ RUN apk add --no-cache --virtual build-dependencies \
     bash \
     gettext \
     ca-certificates \
-    openssl \
+    libressl \
     libpq \
     libjpeg-turbo \
     libpng \
+    tzdata \
+    py-psycopg2 \
     postgresql-client \
     make \
+    geos@testing \
  && update-ca-certificates \
  && make install \
  && apk del build-dependencies
