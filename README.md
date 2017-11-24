@@ -123,6 +123,21 @@ If you want your user to have super privileges:
 
     ALTER USER cosmopolitan WITH SUPERUSER;
 
+Tip for local development using (OS X)
+
+Install [GDAL binaries]() for OSX, and add the following to .bash_profile:
+
+    GDAL_LIBRARY_PATH="/Library/Frameworks/GDAL.framework/Versions/1.11/GDAL"
+    GEOS_LIBRARY_PATH="/Library/Frameworks/GEOS.framework/Versions/3/GEOS"
+
+Then add the following to your local Django settings:
+
+    # GeoDjango fixes
+    GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+    GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
+
+(see https://www.alextomkins.com/2017/08/fixing-gdal-geos-django-macos/ for details)
+
 ## Starting from scratch
 
 ### Requirements
